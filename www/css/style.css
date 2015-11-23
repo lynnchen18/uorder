@@ -1,0 +1,167 @@
+/* For all 
+==================================*/
+/*div {
+	font-family: Raleway;
+}
+button {
+	font-family: Raleway;
+}
+.title {
+	font-family: Raleway;
+}*/
+.item-divder{
+	font-weight: bold;
+}
+.like {
+	color: #ff0000;
+}
+.like:hover {
+	color: #ff0000;
+}
+
+/* Home 
+==================================*/
+.shop-name {
+	text-decoration: none;
+}
+
+/* Shop List 
+==================================*/
+.row .col .button {
+	width: 80%;
+	height: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.row.unlimited-items {
+  flex-wrap: wrap;
+  display: -webkit-flex; /* Safari */
+  -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+}
+
+/* My Order 
+==================================*/
+.number {
+	text-align: center;
+	line-height: 120px;
+	color: white;
+	font-size: 40px;
+	width: 120px;
+	height: 120px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 100%;
+	border: 2px white solid;
+	vertical-align: center;
+	
+}
+.card-ready {
+	background: #387ef5;
+}
+.card-unready {
+	background: #9EB7E2;
+}
+p.shop-name {
+	color: white;
+	font-size: 32px;
+	line-height: 74px;
+}
+p.pickup-time {
+	color: white;
+	font-size: 20px;
+	line-height: 20px;
+}
+
+/* My Favorite 
+==================================*/
+
+/* Purchase Record 
+==================================*/
+.meal-price {
+	color: gray;
+}
+.meal-amout {
+	text-align: right;;
+}
+.total {
+	text-align: right;
+}
+.taken {
+	filter: brightness(0.8);
+	-webkit-filter: brightness(0.8);
+	-moz-filter: brightness(0.8);
+	-o-filter: brightness(0.8);
+	-ms-filter: brightness(0.8);
+	/*filter: blur(1px);
+	-webkit-filter: blur(1px);
+	-moz-filter: blur(1px);
+	-o-filter: blur(1px);
+	-ms-filter: blur(1px);*/
+
+}
+
+/* Setting 
+==================================*/
+
+/* About 
+==================================*/
+
+/* My Plate 
+==================================*/
+.bar-footer .button {
+	width: 100%;
+}
+
+/* Meal Infomation 
+==================================*/
+img.cover {
+	width: 100%;
+}
+
+/* Login 
+==================================*/
+.button.button-icon.icon.ion-close {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.row.row-center {
+	display: table;
+  	width: 95%;
+  	margin: auto;
+  	margin-top: 10px;
+}
+.col.col-cneter {
+	
+}
+/*.app-icon {
+    background-color: #fff;
+    background: url('../img/fruit-and-veg.jpg') center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: auto;
+    margin-top: 15%;
+    width: 125px;
+}*/
+.app-name {
+	margin: auto;
+}
+a.button.button-positive.button-block.button-login {
+	width: 100%;
+	margin: auto;
+	margin-top: 25px;
+}
+.signup {
+	margin: auto;
+	margin-top: 10px;
+	text-align: center;
+}
+a.text-signup {
+	color: grey;
+	text-decoration: underline;
+}
+
+/* Keeper 
+==================================*/
+.button-notify0

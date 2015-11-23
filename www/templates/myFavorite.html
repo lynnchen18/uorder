@@ -1,0 +1,17 @@
+<ion-view title="My Favorite">
+  <ion-content>
+    <div class="list card" ng-repeat="product in products">
+      <div class="item item-divider positive">Shop Name</div>
+      <div class="item item-image">
+        <a href="#/app/meal{{ product.id }}">
+          <img src="{{ product.cover }}">
+        </a>
+      </div>
+      <div class="item item-icon-right">
+        {{ product.name }}
+        <p class="subdued">{{ product.price | currency }}</p>
+        <a class="button button-icon icon ion-heart" ng-click="like(product)" ng-class="{ like: product.like }"></a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
