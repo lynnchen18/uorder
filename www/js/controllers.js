@@ -48,7 +48,6 @@ angular.module('starter.controllers', [])
           type: 'button-positive',
           onTap: function(e) {
             if (!$scope.data.wifi) {
-              //don't allow the user to close unless he enters wifi password
               e.preventDefault();
             } else {
               return $scope.data.wifi;
@@ -68,7 +67,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('HomeCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, $http) {
   $scope.products = [
     {
       id: "001",
@@ -105,13 +104,26 @@ angular.module('starter.controllers', [])
       price: 25,
       like: false
     },
-  ];
+  ]
+
+
+  
+  $http.get('https://uorder-lynnchen18.c9.io/querymeal/').then(function(resp) {
+    console.log('Success', resp);
+    $scope.test = "Success";
+  }, function(err) {
+    console.error('ERR', err);
+
+    // err.status will contain the status code
+  });
+  
   $scope.like = function(product) {
-        if(product.like)
-          product.like = false;
-        else
-          product.like = true;
-    };
+    if(product.like)
+      product.like = false;
+    else
+      product.like = true;
+  };
+    
 })
 
 .controller('ShopsCtrl', function($scope) {
@@ -138,8 +150,7 @@ angular.module('starter.controllers', [])
 
 /*
 .controller('MealCtrl', function($scope) {
-
-
+  
 })
 
 .controller('PlateCtrl', function($scope, $http) {
@@ -168,7 +179,16 @@ angular.module('starter.controllers', [])
 })
 
 .controller('LoginCtrl', function($scope) {
-
+  $scope.user = [
+    {
+      email: keeper@gmail.com,
+      iskeeper = 1;
+    },
+    {
+      email: user@gmail.com,
+      iskeeper = 0;
+    }
+  ];
 
 })
 */
