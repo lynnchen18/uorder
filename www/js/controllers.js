@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-
+    
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -47,11 +47,11 @@ angular.module('starter.controllers', [])
           text: '<b>Sign up</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!$scope.data.wifi) {
-              e.preventDefault();
-            } else {
-              return $scope.data.wifi;
-            }
+            // if (!$scope.data.wifi) {
+            //   e.preventDefault();
+            // } else {
+            //   return $scope.data.wifi;
+            // }
             signupPopup.close();
             $scope.closeLogin();
           }
@@ -104,9 +104,7 @@ angular.module('starter.controllers', [])
       price: 25,
       like: false
     },
-  ]
-
-
+  ];
   
   $http.get('https://uorder-lynnchen18.c9.io/querymeal/').then(function(resp) {
     console.log('Success', resp);
@@ -178,17 +176,8 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('LoginCtrl', function($scope) {
-  $scope.user = [
-    {
-      email: keeper@gmail.com,
-      iskeeper = 1;
-    },
-    {
-      email: user@gmail.com,
-      iskeeper = 0;
-    }
-  ];
+.controller('KeeperCtrl', function($scope) {
+  
 
 })
 */
