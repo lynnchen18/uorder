@@ -79,36 +79,32 @@ angular.module('starter.controllers', [])
     {
       id: "002",
       name: 'Pasta',
-      cover: 'img/pasta.jpg',
+      cover: 'img/pasta1.jpg',
       price: 65,
       like: false
     },
     {
       id: "003",
-      name: '牛肉麵',
-      cover: 'img/beef-noodles.jpg',
-      price: 45,
-      like: false
-    },
-    {
-      id: "004",
       name: 'Donut',
       cover: 'img/donuts.jpg',
       price: 30,
-      like: false
-    },
-    {
-      id: "005",
-      name: 'Cupcake',
-      cover: 'img/cupcakes.jpg',
-      price: 25,
       like: false
     },
   ];
   
   $http.get('https://uorder-lynnchen18.c9.io/querymeal/').then(function(resp) {
     console.log('Success', resp);
-    $scope.test = "Success";
+ 
+    for (var i = resp.data.length - 1; i >= 0; i--) {
+      $scope.products[$scope.products.length] = 
+      { id: resp.data[i].meal_id, 
+        name: resp.data[i].name, 
+        cover: resp.data[i].cover, 
+        price: resp.data[i].price, 
+        like: false
+      }
+    };
+
   }, function(err) {
     console.error('ERR', err);
 
