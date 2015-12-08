@@ -97,7 +97,8 @@ angular.module('starter.controllers', [])
  
     for (var i = resp.data.length - 1; i >= 0; i--) {
       $scope.products[$scope.products.length] = 
-      { id: resp.data[i].meal_id, 
+      { 
+        id: resp.data[i].meal_id, 
         name: resp.data[i].name, 
         cover: resp.data[i].cover, 
         price: resp.data[i].price, 
