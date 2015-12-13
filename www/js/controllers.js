@@ -1,32 +1,28 @@
 angular.module('starter.controllers', [])
 
+/* Menu and Login/Signup Ctrl
+=========================================================================================*/
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout) {
 
   $scope.loginData = {};
 
-  // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
   });
 
-  // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
   };
 
-  // Open the login modal
   $scope.login = function() {
     $scope.modal.show();
   };
 
-  // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
     
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
@@ -35,7 +31,6 @@ angular.module('starter.controllers', [])
   $scope.signup = function() {
     $scope.data = {};
 
-    // An elaborate, custom popup
     var signupPopup = $ionicPopup.show({
       template: 'Name<input type="text" ng-model="data.name"> <br> Phone<input type="tel" ng-model="data.phone"> <br> Email<input type="email" ng-model="data.email"> <br> Password<input type="password" ng-model="data.password">',
       title: 'Sign up',
@@ -62,38 +57,18 @@ angular.module('starter.controllers', [])
       console.log('Tapped!', res);
     });
     $timeout(function() {
-      signupPopup.close(); //close the popup after 3 seconds for some reason
+      signupPopup.close();
     }, 10000);
   };
 })
 
+
+/* Home Ctrl
+=========================================================================================*/
 .controller('HomeCtrl', function($scope, $http) {
-  // $scope.products = [
-  //   {
-  //     id: "001",
-  //     name: 'Fruit & Vegs',
-  //     cover: 'img/fruit-and-veg.jpg',
-  //     price: 50,
-  //     like: false
-  //   },
-  //   {
-  //     id: "002",
-  //     name: 'Pasta',
-  //     cover: 'img/pasta1.jpg',
-  //     price: 65,
-  //     like: false
-  //   },
-  //   {
-  //     id: "003",
-  //     name: 'Donut',
-  //     cover: 'img/donuts.jpg',
-  //     price: 30,
-  //     like: false
-  //   },
-  // ];
   $scope.products = [];
 
-  $http.get('https://uorder-lynnchen18.c9.io/querymeal/').then(function(resp) {
+  $http.get('https://uorder-lynnchen18.c9.io/meals/').then(function(resp) {
     console.log('Success', resp);
  
     for (var i = resp.data.length - 1; i >= 0; i--) {
@@ -109,7 +84,6 @@ angular.module('starter.controllers', [])
   }, function(err) {
     console.error('ERR', err);
 
-    // err.status will contain the status code
   });
   
   $scope.like = function(product) {
@@ -121,27 +95,13 @@ angular.module('starter.controllers', [])
     
 })
 
+
+/* Shops Ctrl
+=========================================================================================*/
 .controller('ShopsCtrl', function($scope, $http) {
-  // $scope.shops = [
-  //   {
-  //     id: "01",
-  //     name: "Pasta Baladin",
-  //     cover: "img/pasta_restaurant.jpg"
-  //   },
-  //   {
-  //     id: "03",
-  //     name: "Chipotle",
-  //     cover: "img/chipotle.jpg"
-  //   },
-  //   {
-  //     id: "02",
-  //     name: "Pizza Fusion",
-  //     cover: "img/pizza_fusion.jpg"
-  //   },  
-  // ];
   $scope.shops = [];
 
-  $http.get('https://uorder-lynnchen18.c9.io/queryshop/').then(function(resp) {
+  $http.get('https://uorder-lynnchen18.c9.io/shops/').then(function(resp) {
     console.log('Success', resp);
  
     for (var i = resp.data.length - 1; i >= 0; i--) {
@@ -155,43 +115,34 @@ angular.module('starter.controllers', [])
   }, function(err) {
     console.error('ERR', err);
 
-    // err.status will contain the status code
+    
   });
 })
 
 
-/*
-.controller('MealCtrl', function($scope) {
+
+/* Meals Ctrl
+=========================================================================================*/
+.controller('MealsCtrl', function($scope) {
   
 })
 
+
+/* Meal Info Ctrl
+=========================================================================================*/
+.controller('MealInfoCtrl', function($scope) {
+  
+})
+
+/* My Plate Ctrl
+=========================================================================================*/
 .controller('PlateCtrl', function($scope, $http) {
- $http.get('https://cors-test.appspot.com/test').then(function(resp) {
-    console.log('Success', resp);
-    // For JSON responses, resp.data contains the result
-  }, function(err) {
-    console.error('ERR', err);
-    // err.status will contain the status code
-  })
+ 
 })
 
-.controller('OrderCtrl', function($scope) {
-
-
-})
-
-.controller('FavoriteCtrl', function($scope) {
-
-
-})
-
+/* Purchase Record Ctrl
+=========================================================================================*/
 .controller('RecordCtrl', function($scope) {
 
 
 })
-
-.controller('KeeperCtrl', function($scope) {
-  
-
-})
-*/

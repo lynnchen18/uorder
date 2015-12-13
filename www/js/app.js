@@ -17,6 +17,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+    /* Side Menu 
+    =======================================================*/
     .state('app', {
     url: '/app',
     abstract: true,
@@ -24,6 +26,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
+  /* Home 
+  =======================================================*/  
   .state('app.home', {
     url: '/home',
     views: {
@@ -34,6 +38,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  /* Shop List 
+  =======================================================*/
   .state('app.shopList', {
     url: '/shopList',
     views: {
@@ -44,6 +50,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  /* Meal List 
+  =======================================================*/
   .state('app.mealList', {
     url: '/shop:shopId',
     views: {
@@ -54,6 +62,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  /* My Plate 
+  =======================================================*/
   .state('app.myPlate', {
     url: '/myPlate',
     views: {
@@ -63,25 +73,27 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.myOrder', {
-    url: '/myOrder',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/myOrder.html'
-      }
-    }
-  })
+  // .state('app.myOrder', {
+  //   url: '/myOrder',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/myOrder.html'
+  //     }
+  //   }
+  // })
 
-  .state('app.myFavorite', {
-    url: '/myFavorite',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/myFavorite.html',
-        controller: 'HomeCtrl'
-      }
-    }
-  })
-
+  // .state('app.myFavorite', {
+  //   url: '/myFavorite',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/myFavorite.html',
+  //       controller: 'HomeCtrl'
+  //     }
+  //   }
+  // })
+  
+  /* Purchase Record 
+  =======================================================*/
   .state('app.purchaseRecords', {
     url: '/purchaseRecords',
     views: {
@@ -91,6 +103,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  /* Settings 
+  =======================================================*/
   .state('app.settings', {
     url: '/settings',
     views: {
@@ -100,15 +114,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.about', {
-    url: '/about',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/about.html'
-      }
-    }
-  })
+  // .state('app.about', {
+  //   url: '/about',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/about.html'
+  //     }
+  //   }
+  // })
 
+  /* Meal Info 
+  =======================================================*/
   .state('app.mealInfo', {
     url: '/meal:productId',
     views: {
@@ -118,14 +134,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.login', {
-    url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/login.html'
-      }
-    }
-  })
+  
+  // .state('app.login', {
+  //   url: '/login',
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: 'templates/login.html'
+  //     }
+  //   }
+  // })
 
   .state('app.keeper', {
     url: '/keeper',
