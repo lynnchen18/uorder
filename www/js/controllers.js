@@ -68,36 +68,36 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HomeCtrl', function($scope, $http) {
-  $scope.products = [
-    {
-      id: "001",
-      name: 'Fruit & Vegs',
-      cover: 'img/fruit-and-veg.jpg',
-      price: 50,
-      like: false
-    },
-    {
-      id: "002",
-      name: 'Pasta',
-      cover: 'img/pasta1.jpg',
-      price: 65,
-      like: false
-    },
-    {
-      id: "003",
-      name: 'Donut',
-      cover: 'img/donuts.jpg',
-      price: 30,
-      like: false
-    },
-  ];
-  
+  // $scope.products = [
+  //   {
+  //     id: "001",
+  //     name: 'Fruit & Vegs',
+  //     cover: 'img/fruit-and-veg.jpg',
+  //     price: 50,
+  //     like: false
+  //   },
+  //   {
+  //     id: "002",
+  //     name: 'Pasta',
+  //     cover: 'img/pasta1.jpg',
+  //     price: 65,
+  //     like: false
+  //   },
+  //   {
+  //     id: "003",
+  //     name: 'Donut',
+  //     cover: 'img/donuts.jpg',
+  //     price: 30,
+  //     like: false
+  //   },
+  // ];
+  $scope.products = [];
+
   $http.get('https://uorder-lynnchen18.c9.io/querymeal/').then(function(resp) {
     console.log('Success', resp);
  
     for (var i = resp.data.length - 1; i >= 0; i--) {
-      $scope.products[$scope.products.length] = 
-      { 
+      $scope.products[$scope.products.length] = { 
         id: resp.data[i].meal_id, 
         name: resp.data[i].name, 
         cover: resp.data[i].cover, 
@@ -121,25 +121,42 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('ShopsCtrl', function($scope) {
-  $scope.shops = [
-    {
-      id: "01",
-      name: "Shop 1"
-    },
-    {
-      id: "02",
-      name: "Shop 2"
-    },
-    {
-      id: "03",
-      name: "Shop 3"
-    },
-    {
-      id: "04",
-      name: "Shop 4"
-    },
-  ];
+.controller('ShopsCtrl', function($scope, $http) {
+  // $scope.shops = [
+  //   {
+  //     id: "01",
+  //     name: "Pasta Baladin",
+  //     cover: "img/pasta_restaurant.jpg"
+  //   },
+  //   {
+  //     id: "03",
+  //     name: "Chipotle",
+  //     cover: "img/chipotle.jpg"
+  //   },
+  //   {
+  //     id: "02",
+  //     name: "Pizza Fusion",
+  //     cover: "img/pizza_fusion.jpg"
+  //   },  
+  // ];
+  $scope.shops = [];
+
+  $http.get('https://uorder-lynnchen18.c9.io/queryshop/').then(function(resp) {
+    console.log('Success', resp);
+ 
+    for (var i = resp.data.length - 1; i >= 0; i--) {
+      $scope.shops[$scope.shops.length] = { 
+        id: resp.data[i].shop_id, 
+        name: resp.data[i].name, 
+        cover: resp.data[i].cover
+      }
+    };
+
+  }, function(err) {
+    console.error('ERR', err);
+
+    // err.status will contain the status code
+  });
 })
 
 

@@ -1,14 +1,15 @@
 <ion-view view-title="Shops">
   <ion-content>
-    <div class="row unlimited-items">
+    <!--div class="row unlimited-items">
       <div class="col col-50" ng-repeat="shop in shops">
         <a class="button button-outline button-positive" id="button-shop"  href="#/app/shop{{ shop.id }}">
           {{ shop.name }}
         </a>
       </div>
-    </div> 
-    <div class="shop">
-    	Shop Name
+    </div--> 
+    <div class="shop" ng-repeat="shop in shops" ng-style="{'background': 'url({{ shop.cover }}) no-repeat center'}">
+      <a href="#/app/shop{{ shop.id }}">{{ shop.name }}</a>
+    	
     </div>     
   </ion-content>
 </ion-view> 
