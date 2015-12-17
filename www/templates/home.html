@@ -1,19 +1,19 @@
 <ion-view view-title="uORDER">
 	<ion-content>
   		<div ng-model="test">{{ test }}</div>
-      <div class="list card" ng-repeat="product in products">
+      <div class="list card" ng-repeat="meal in meals">
     		<div class="item item-divider positive">
-          <a class="positive shop-name" href="#/app/shop1">Shop Name</a>
+          <a class="positive shop-name" href="#/app/shop{{ meal.shopId }}">{{ meal.shopName }}</a>
         </div>
             <div class="item item-image">
-              	<a href="#/app/meal{{ product.id }}">
-                	<img src="{{ product.cover }}">
+              	<a href="#/app/meal{{ meal.id }}">
+                	<img src="{{ meal.cover }}">
               	</a>
             </div>
             <div class="item item-icon-right">
-              	{{ product.name }}
-              	<p class="subdued">{{ product.price | currency }}</p>
-              	<a class="button button-icon icon ion-heart" ng-click="like(product)" ng-class="{ like: product.like }"></a>
+              	{{ meal.name }}
+              	<p class="subdued">{{ meal.price | currency }}</p>
+              	<a class="button button-icon icon ion-heart" ng-click="like(meal)" ng-class="{ like: meal.like }"></a>
             </div>
         </div>
   	</ion-content>

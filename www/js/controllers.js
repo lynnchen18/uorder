@@ -66,13 +66,26 @@ angular.module('starter.controllers', [])
 /* Home Ctrl
 =========================================================================================*/
 .controller('HomeCtrl', function($scope, $http) {
-  $scope.products = [];
+  $scope.shops = [];
+  $scope.meals = [];
+
+  $http.get('https://uorder-lynnchen18.c9.io/shops/').then(function(resp) {
+    console.log('Success', resp);
+ 
+    for (var i = 0; i <= resp.data.length - 1; i++) {
+      $scope.shops[$scope.shops.length] = { 
+        id: resp.data[i].shop_id, 
+        name: resp.data[i].name, 
+      }
+    };
 
   $http.get('https://uorder-lynnchen18.c9.io/meals/').then(function(resp) {
     console.log('Success', resp);
  
-    for (var i = resp.data.length - 1; i >= 0; i--) {
-      $scope.products[$scope.products.length] = { 
+    for (var i = 0; i <= resp.data.length - 1; i++) {
+      $scope.meals[$scope.meals.length] = { 
+        shopId: resp.data[i].shop_id, 
+        shopName: $scope.getShopName(resp.data[i].shop_id),
         id: resp.data[i].meal_id, 
         name: resp.data[i].name, 
         cover: resp.data[i].cover, 
@@ -85,14 +98,28 @@ angular.module('starter.controllers', [])
     console.error('ERR', err);
 
   });
-  
-  $scope.like = function(product) {
-    if(product.like)
-      product.like = false;
-    else
-      product.like = true;
-  };
+
+  }, function(err) {
+    console.error('ERR', err);
+
     
+  });
+  
+  $scope.like = function(meal) {
+    if(meal.like)
+      meal.like = false;
+    else
+      meal.like = true;
+  };
+  
+  $scope.getShopName = function(shopId) {
+    var shopName = "";
+    for (var i = $scope.shops.length - 1; i >= 0; i--) {
+      if ($scope.shops[i].id == shopId)
+        shopName = $scope.shops[i].name
+    };
+    return shopName;
+  };
 })
 
 
@@ -104,7 +131,7 @@ angular.module('starter.controllers', [])
   $http.get('https://uorder-lynnchen18.c9.io/shops/').then(function(resp) {
     console.log('Success', resp);
  
-    for (var i = resp.data.length - 1; i >= 0; i--) {
+    for (var i = 0; i <= resp.data.length - 1; i++) {
       $scope.shops[$scope.shops.length] = { 
         id: resp.data[i].shop_id, 
         name: resp.data[i].name, 
@@ -123,14 +150,49 @@ angular.module('starter.controllers', [])
 
 /* Meals Ctrl
 =========================================================================================*/
-.controller('MealsCtrl', function($scope) {
+.controller('MealsCtrl', function($scope, $http, $stateParams) {
+  $scope.meals = [];
+  $scope.shop;
+
+  $http.get('https://uorder-lynnchen18.c9.io/shop' + $stateParams.shopId + 'meals/').then(function(resp) {
+    console.log('Success', resp);
+    for (var i = 0; i <= resp.data.length - 1; i++) {
+      $scope.meals[$scope.meals.length] = { 
+        id: resp.data[i].meal_id, 
+        name: resp.data[i].name, 
+        cover: resp.data[i].cover, 
+        price: resp.data[i].price, 
+        like: false
+      }
+    };
+
+  }, function(err) {
+    console.error('ERR', err);
+
+  });
   
+  $http.get('https://uorder-lynnchen18.c9.io/shop' + $stateParams.shopId + '/').then(function(resp) {
+    console.log('Success', resp);
+    $scope.shop = resp.data[0].name;
+    console.log($scope.shop);
+  }, function(err) {
+    console.error('ERR', err);
+
+  });
+  
+
+  $scope.like = function(meal) {
+    if(meal.like)
+      meal.like = false;
+    else
+      meal.like = true;
+  };
 })
 
 
 /* Meal Info Ctrl
 =========================================================================================*/
-.controller('MealInfoCtrl', function($scope) {
+.controller('MealInfoCtrl', function($scope, $http, $routeParams) {
   
 })
 
@@ -142,7 +204,7 @@ angular.module('starter.controllers', [])
 
 /* Purchase Record Ctrl
 =========================================================================================*/
-.controller('RecordCtrl', function($scope) {
+.controller('RecordCtrl', function($scope, $http) {
 
 
 })

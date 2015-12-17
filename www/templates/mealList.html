@@ -1,15 +1,18 @@
-<ion-view view-title="Shop">
-	<ion-content>
-  	<div class="list card" ng-repeat="product in products">
+<ion-view ng-model="shop" view-title="shop">
+	<ion-nav-title>
+    {{ shop }}
+  </ion-nav-title>
+  <ion-content>
+  	<div class="list card" ng-repeat="meal in meals">
       <div class="item item-image">
-        <a href="#/app/meal{{ product.id }}">
-          <img src="{{ product.cover }}">
+        <a href="#/app/meal{{ meal.id }}">
+          <img src="{{ meal.cover }}">
         </a>
         </div>
         <div class="item item-icon-right">
-          {{ product.name }}
-          <p class="subdued">{{ product.price | currency }}</p>
-          <a class="button button-icon icon ion-heart" ng-click="like(product)" ng-class="{ like: product.like }"></a>
+          {{ meal.name }}
+          <p class="subdued">{{ meal.price | currency }}</p>
+          <a class="button button-icon icon ion-heart" ng-click="like(meal)" ng-class="{ like: meal.like }"></a>
         </div>
       </div>
   </ion-content>

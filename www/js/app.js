@@ -17,9 +17,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    /* Side Menu 
-    =======================================================*/
-    .state('app', {
+  /* Side Menu 
+  =======================================================*/
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
@@ -57,7 +57,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/mealList.html',
-        controller: 'HomeCtrl'
+        controller: 'MealsCtrl'
       }
     }
   })
@@ -134,7 +134,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  
+
   // .state('app.login', {
   //   url: '/login',
   //   views: {
