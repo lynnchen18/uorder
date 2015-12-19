@@ -25,8 +25,15 @@
           </div>
         </div>
       </div>
-      <div class="item item-divider">
+      <div class="item">
         <div class="positive total">Total: $9000</div>
+      </div>
+      <div class="item item-divider">
+        <ionic-timepicker input-obj="timePickerObject24Hour">
+          <button class="button button-block button-clear button-positive overflowShow">
+            <standard-time-no-meridian etime='timePickerObject24Hour.inputEpochTime'></standard-time-no-meridian>
+          </button>
+        </ionic-timepicker>
       </div>
     </div>
   </ion-content>
