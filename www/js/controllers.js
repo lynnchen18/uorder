@@ -1,8 +1,19 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngOpenFB'])
 
 /* Menu and Login/Signup Ctrl
 =========================================================================================*/
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, ngFB) {
+  $scope.fbLogin = function () {
+    ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+      function (response) {
+        if (response.status === 'connected') {
+          console.log('Facebook login succeeded');
+          $scope.closeLogin();
+        } else {
+          alert('Facebook login failed');
+        }
+      });
+  };
 
   $scope.loginData = {};
 

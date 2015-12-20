@@ -1,6 +1,7 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-timepicker'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-timepicker'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, ngFB) {
+  ngFB.init({appId: '969386769767276'});
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
