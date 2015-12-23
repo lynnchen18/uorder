@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-timepicker'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-timepicker', 'ionicShop'])
 
 .run(function($ionicPlatform, ngFB) {
   ngFB.init({appId: '969386769767276'});
@@ -75,15 +75,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-ti
     }
   })
 
-  // .state('app.myOrder', {
-  //   url: '/myOrder',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/myOrder.html'
-  //     }
-  //   }
-  // })
-
   // .state('app.myFavorite', {
   //   url: '/myFavorite',
   //   views: {
@@ -116,35 +107,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-ti
     }
   })
 
-  // .state('app.about', {
-  //   url: '/about',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/about.html'
-  //     }
-  //   }
-  // })
-
   /* Meal Info 
   =======================================================*/
   .state('app.mealInfo', {
-    url: '/meal:productId',
+    url: '/meal:id',
     views: {
       'menuContent': {
-        templateUrl: 'templates/mealInfo.html'
+        templateUrl: 'templates/mealInfo.html',
+        controller: 'MealInfoCtrl'
       }
     }
   })
-
-
-  // .state('app.login', {
-  //   url: '/login',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/login.html'
-  //     }
-  //   }
-  // })
 
   .state('app.keeper', {
     url: '/keeper',
@@ -156,10 +129,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-ti
   })
 
 
-  ;
-  $urlRouterProvider.otherwise('/app/home');
-
-  
+  ;$urlRouterProvider.otherwise('/app/home'); 
 })
 
 .directive('standardTimeNoMeridian', function () {

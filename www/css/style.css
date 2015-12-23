@@ -136,6 +136,9 @@ p.pickup-time {
 img.cover {
 	width: 100%;
 }
+.list .item h2 {
+	font-size: 24px;
+}
 
 /* Login 
 ==================================*/

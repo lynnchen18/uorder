@@ -1,13 +1,16 @@
 <ion-view title="My Plate">
+  <ion-nav-title>
+    我的餐盤
+  </ion-nav-title>
   <ion-content>
     <div class="list card">
       <div class="item item-divider positive">
         Shop name
       </div>
-      <div class="item item-select">
+      <div class="item item-select" ng-repeat="product in plateProducts">
         <div class="row">
-          <div class="col col-66 meal-name">something</div>
-          <p class="col col-15 meal-price">$50</p>
+          <div class="col col-66 meal-name">{{ product.name }}</div>
+          <p class="col col-15 meal-price">${{ product.price }}</p>
           <div class="col col-15 meal-amout">
             <select>
               <option selected>0</option>

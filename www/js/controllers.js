@@ -203,13 +203,31 @@ angular.module('starter.controllers', ['ngOpenFB'])
 
 /* Meal Info Ctrl
 =========================================================================================*/
-.controller('MealInfoCtrl', function($scope, $http, $routeParams) {
-  
+.controller('MealInfoCtrl', function($scope, $http, $stateParams, Products) {
+  $scope.meal;
+
+  $http.get('https://uorder-lynnchen18.c9.io/meal' + $stateParams.id + '/').then(function(resp) {
+    console.log('Success', resp);
+    $scope.meal = resp.data[0];
+    console.log($scope.meal);
+  }, function(err) {
+    console.error('ERR', err);
+
+  });
+
+
+  $scope.orderNow = function (){
+    $state.go('app.myPlate');
+  };
+  $scope.putIntoPlate = function (product){
+    Products.addToCart(product);
+  };
+
 })
 
 /* My Plate Ctrl
 =========================================================================================*/
-.controller('PlateCtrl', function($scope, $http) {
+.controller('PlateCtrl', function($scope, $http, Products) {
   $scope.timePickerObject24Hour = {
     inputEpochTime: ((new Date()).getHours() * 60 * 60 + (new Date()).getMinutes() * 60),  //Optional
     step: 10,  //Optional
@@ -233,6 +251,8 @@ angular.module('starter.controllers', ['ngOpenFB'])
     }
   }
 
+  $scope.plateProducts = Products.cartProducts;
+  console.log($scope.plateProducts);
 
 })
 

@@ -1,11 +1,24 @@
-<ion-view view-title="Information">
+<ion-view view-title="Information" ng-model="meal">
+	<ion-nav-title>
+    	{{ meal.name }}
+  	</ion-nav-title>
 	<ion-content>
-		<img class="cover" src="img/fruit-and-veg.jpg">
+		<img class="cover" src="{{ meal.cover }}">
+		<div class="list">
+			<div class="item item-icon-right">
+              	<h2>{{ meal.name }}</h2>
+              	<p class="subdued">{{ meal.price | currency }}</p>
+              	<a class="button button-icon icon ion-heart" ng-click="like(meal)" ng-class="{ like: meal.like }"></a>
+            </div>
+			<div class="item">
+				{{ meal.info }}
+			</div>			
+		</div>
 	</ion-content>
 	<div class="bar bar-footer bar-positive">
 		<div class="button-bar">
-			<a class="button button-clear">order now</a>
-			<a class="button button-clear">put into plate</a>
+			<a class="button button-clear">馬上訂餐</a>
+			<a class="button button-clear" ng-click="putIntoPlate(meal)">放入餐盤</a>
 		</div>
 	</div>
 </ion-view>
