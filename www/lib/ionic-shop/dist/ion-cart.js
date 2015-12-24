@@ -19,12 +19,15 @@
 
       if (productInCart) {
         this.addOneProduct(productInCart);
+        console.log("if productInCart");
       } else {
         product.purchaseQuantity = 0;
         this.addOneProduct(product);
         this.cartProducts.push(product);
+        console.log("if not productInCart");
       }
-      console.log("function addToCart");
+      console.log(product.name + " " + product.id + " addToCart");
+      console.log(this.cartProducts);
     };
 
     this.removeProduct = function(product) {

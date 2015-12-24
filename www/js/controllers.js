@@ -208,13 +208,19 @@ angular.module('starter.controllers', ['ngOpenFB'])
 
   $http.get('https://uorder-lynnchen18.c9.io/meal' + $stateParams.id + '/').then(function(resp) {
     console.log('Success', resp);
-    $scope.meal = resp.data[0];
+    $scope.meal = {
+      shopId: resp.data[i].shop_id, 
+      shopName: $scope.getShopName(resp.data[i].shop_id),
+      id: resp.data[i].meal_id, 
+      name: resp.data[i].name, 
+      cover: resp.data[i].cover, 
+      price: resp.data[i].price 
+    };
     console.log($scope.meal);
   }, function(err) {
     console.error('ERR', err);
 
   });
-
 
   $scope.orderNow = function (){
     $state.go('app.myPlate');

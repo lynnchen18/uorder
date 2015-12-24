@@ -5,16 +5,16 @@
   <ion-content>
     <div class="list card">
       <div class="item item-divider positive">
-        Shop name
+        Chipotle
       </div>
-      <div class="item item-select" ng-repeat="product in plateProducts">
+      <div class="item item-select" ng-repeat="meal in plateProducts">
         <div class="row">
-          <div class="col col-66 meal-name">{{ product.name }}</div>
-          <p class="col col-15 meal-price">${{ product.price }}</p>
+          <div class="col col-66 meal-name">{{ meal.name }}</div>
+          <p class="col col-15 meal-price">${{ meal.price }}</p>
           <div class="col col-15 meal-amout">
             <select>
-              <option selected>0</option>
-              <option>1</option>
+              <option>0</option>
+              <option selected>1</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>
@@ -28,8 +28,9 @@
           </div>
         </div>
       </div>
+      
       <div class="item">
-        <div class="positive total">Total: $9000</div>
+        <div class="positive total">Total: $</div>
       </div>
       <div class="item item-divider">
         <ionic-timepicker input-obj="timePickerObject24Hour">
