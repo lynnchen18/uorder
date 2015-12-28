@@ -3,11 +3,11 @@
     我的餐盤
   </ion-nav-title>
   <ion-content>
-    <div class="list card">
+    <div class="list card" ng-repeat="plate in plates">
       <div class="item item-divider positive">
-        Chipotle
+        {{ plate.shop.name }}
       </div>
-      <div class="item item-select" ng-repeat="meal in plateProducts">
+      <div class="item item-select" ng-repeat="meal in plate.meals">
         <div class="row">
           <div class="col col-66 meal-name">{{ meal.name }}</div>
           <p class="col col-15 meal-price">${{ meal.price }}</p>
@@ -43,7 +43,7 @@
   </ion-content>
   <div class="bar bar-footer bar-positive">
     <div class="button-bar">
-      <a class="button button-clear">order</a>
+      <a class="button button-clear" ng-click="order()">我要點餐</a>
     </div>
   </div>
 </ion-view>

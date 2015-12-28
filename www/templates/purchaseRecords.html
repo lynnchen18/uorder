@@ -3,42 +3,17 @@
     訂餐紀錄
   </ion-nav-title>
   <ion-content>
-    <div class="list card">
-      <div class="item item-divider positive">Chipotle</div>
+    <div class="list card" ng-repeat="plate in plates">
+      <div class="item item-divider positive">{{ plate.shop.name }}</div>
       <div class="item item-text-wrap">
-        <div class="row">
-          <div class="col col-75 meal-name">Chicken salad</div>
-          <p class="col col-15 meal-price">$35</p>
+        <div class="row" ng-repeat="meal in plate.meals">
+          <div class="col col-75 meal-name">{{ meal.name }}</div>
+          <p class="col col-15 meal-price">${{ meal.price }}</p>
           <p class="col col-10 meal-amout">1</p>
         </div>
-        <div class="row">
-          <div class="col col-75 meal-name">Steak burrito</div>
-          <p class="col col-15 meal-price">$35</p>
-          <p class="col col-10 meal-amout">2</p>
-        </div>
-        <div class="row">
-          <div class="col col-75 meal-name">Chicken tacos</div>
-          <p class="col col-15 meal-price">$35</p>
-          <p class="col col-10 meal-amout">1</p>
-        </div>
-        <div class="positive total">Total: $140</div>
+        <div class="positive total">Total: $</div>
       </div>
     </div>
-    <div class="list card taken">
-      <div class="item item-divider positive">Pizza Fusion</div>
-      <div class="item item-text-wrap">
-        <div class="row">
-          <div class="col col-75 meal-name">Greek pizza</div>
-          <p class="col col-15 meal-price">$20</p>
-          <p class="col col-10 meal-amout">1</p>
-        </div>
-        <div class="row">
-          <div class="col col-75 meal-name">Cheese pizza</div>
-          <p class="col col-15 meal-price">$25</p>
-          <p class="col col-10 meal-amout">2</p>
-        </div>
-        <div class="positive total">Total: $70</div>
-      </div>
-    </div>
+    
   </ion-content>
 </ion-view>

@@ -81,7 +81,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
   $scope.meals = [];
 
   $http.get('https://uorder-lynnchen18.c9.io/shops/').then(function(resp) {
-    console.log('Success', resp);
+    console.log('HomeCtrl: get shops data success', resp);
  
     for (var i = 0; i <= resp.data.length - 1; i++) {
       $scope.shops[$scope.shops.length] = { 
@@ -91,7 +91,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
     };
 
   $http.get('https://uorder-lynnchen18.c9.io/meals/').then(function(resp) {
-    console.log('Success', resp);
+    console.log('HomeCtrl: get meals data success', resp);
  
     for (var i = 0; i <= resp.data.length - 1; i++) {
       $scope.meals[$scope.meals.length] = { 
@@ -140,7 +140,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
   $scope.shops = [];
 
   $http.get('https://uorder-lynnchen18.c9.io/shops/').then(function(resp) {
-    console.log('Success', resp);
+    console.log('ShopsCtrl: get shops data success', resp);
  
     for (var i = 0; i <= resp.data.length - 1; i++) {
       $scope.shops[$scope.shops.length] = { 
@@ -166,7 +166,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
   $scope.shop;
 
   $http.get('https://uorder-lynnchen18.c9.io/shop' + $stateParams.shopId + 'meals/').then(function(resp) {
-    console.log('Success', resp);
+    console.log('MealsCtrl: get meals data success', resp);
     for (var i = 0; i <= resp.data.length - 1; i++) {
       $scope.meals[$scope.meals.length] = { 
         id: resp.data[i].meal_id, 
@@ -179,16 +179,14 @@ angular.module('starter.controllers', ['ngOpenFB'])
 
   }, function(err) {
     console.error('ERR', err);
-
   });
   
   $http.get('https://uorder-lynnchen18.c9.io/shop' + $stateParams.shopId + '/').then(function(resp) {
-    console.log('Success', resp);
+    console.log('MealsCtrl: get shop data success', resp);
     $scope.shop = resp.data[0].name;
     console.log($scope.shop);
   }, function(err) {
     console.error('ERR', err);
-
   });
   
 
@@ -204,29 +202,52 @@ angular.module('starter.controllers', ['ngOpenFB'])
 /* Meal Info Ctrl
 =========================================================================================*/
 .controller('MealInfoCtrl', function($scope, $http, $stateParams, Products) {
-  $scope.meal;
+  $scope.shops = [];
+  $http.get('https://uorder-lynnchen18.c9.io/shops/').then(function(resp) {
+    console.log('MealInfoCtrl: get shop data success', resp);
+    for (var i = 0; i <= resp.data.length - 1; i++) {
+      $scope.shops[$scope.shops.length] = { 
+        id: resp.data[i].shop_id, 
+        name: resp.data[i].name, 
+      }
+    };
+  }, function(err) {
+    console.error('ERR', err);
+  });
 
+  $scope.meal;
   $http.get('https://uorder-lynnchen18.c9.io/meal' + $stateParams.id + '/').then(function(resp) {
-    console.log('Success', resp);
+    console.log('MealInfoCtrl: get meal data success', resp);
     $scope.meal = {
-      shopId: resp.data[i].shop_id, 
-      shopName: $scope.getShopName(resp.data[i].shop_id),
-      id: resp.data[i].meal_id, 
-      name: resp.data[i].name, 
-      cover: resp.data[i].cover, 
-      price: resp.data[i].price 
+      shopId: resp.data[0].shop_id, 
+      shopName: $scope.getShopName(resp.data[0].shop_id),
+      id: resp.data[0].meal_id, 
+      name: resp.data[0].name, 
+      cover: resp.data[0].cover, 
+      price: resp.data[0].price, 
+      info: resp.data[0].info, 
     };
     console.log($scope.meal);
   }, function(err) {
     console.error('ERR', err);
-
   });
+
+  
 
   $scope.orderNow = function (){
     $state.go('app.myPlate');
   };
   $scope.putIntoPlate = function (product){
     Products.addToCart(product);
+  };
+
+  $scope.getShopName = function(shopId) {
+    var shopName = "";
+    for (var i = $scope.shops.length - 1; i >= 0; i--) {
+      if ($scope.shops[i].id == shopId)
+        shopName = $scope.shops[i].name
+    };
+    return shopName;
   };
 
 })
@@ -257,14 +278,130 @@ angular.module('starter.controllers', ['ngOpenFB'])
     }
   }
 
-  $scope.plateProducts = Products.cartProducts;
-  console.log($scope.plateProducts);
+  $scope.meals = Products.cartProducts;
+  console.log("PlateCtrl (meals): " + $scope.meals);
 
+  $scope.plates = [];
+  for (var meal = 0; meal <= $scope.meals.length - 1; meal++) {
+    if ($scope.plates.length === 0) {
+      $scope.plates[0] = {
+        shop: {
+          id: $scope.meals[meal].shopId,
+          name: $scope.meals[meal].shopName,
+        },
+        meals: [{
+          id: $scope.meals[meal].id,
+          name: $scope.meals[meal].name,
+          price: $scope.meals[meal].price,
+          quantity: $scope.meals[meal].quantity
+        }]
+      };
+      console.log("first");
+    } else {
+      for (var shop = 0; shop <= $scope.plates.length - 1; shop++) {
+        if ($scope.plates[shop].shop.id === $scope.plates[shop].id) {
+          $scope.plates[shop].meals[$scope.plates[shop].meals.length] = {
+            id: $scope.meals[meal].id,
+            name: $scope.meals[meal].name,
+            price: $scope.meals[meal].price,
+            quantity: $scope.meals[meal].quantity
+          };
+          console.log("if");
+          break;
+        } else if (shop === $scope.plates.length - 1) {
+          $scope.plates[shop+1] = {
+            shop: {
+              id: $scope.meals[meal].shopId,
+              name: $scope.meals[meal].shopName,
+            },
+            meals: [{
+              id: $scope.meals[meal].id,
+              name: $scope.meals[meal].name,
+              price: $scope.meals[meal].price,
+              quantity: $scope.meals[meal].quantity
+            }]
+          };
+          console.log("else if");
+          break;
+        }
+      }
+    }
+  }
+
+  console.log("PlateCtrl (plates): " + $scope.plates);
+
+  $scope.order = function (){
+    $http({
+      url: 'https://uorder-lynnchen18.c9.io/print_meals/',
+      method: "POST",
+      data: {
+        'data': $scope.meals
+      },
+      headers: {
+        'X-CSRFToken': 'csrftoken'
+      }
+    }).success(function (data, status, config) {
+      console.log("PlateCtrl: post orders to django success", status)
+    }).error(function (data, status, config) {
+      console.error('ERR', status);
+    });
+  }
+  
 })
 
 /* Purchase Record Ctrl
 =========================================================================================*/
-.controller('RecordCtrl', function($scope, $http) {
+.controller('RecordCtrl', function($scope, $http, Products) {
+  $scope.meals = Products.cartProducts;
+  console.log("RecordCtrl (meals): " + $scope.meals);
 
+  $scope.plates = [];
+  for (var meal = 0; meal <= $scope.meals.length - 1; meal++) {
+    if ($scope.plates.length === 0) {
+      $scope.plates[0] = {
+        shop: {
+          id: $scope.meals[meal].shopId,
+          name: $scope.meals[meal].shopName,
+        },
+        meals: [{
+          id: $scope.meals[meal].id,
+          name: $scope.meals[meal].name,
+          price: $scope.meals[meal].price,
+          quantity: $scope.meals[meal].quantity
+        }]
+      };
+      console.log("first");
+    } else {
+      for (var shop = 0; shop <= $scope.plates.length - 1; shop++) {
+        if ($scope.plates[shop].shop.id === $scope.plates[shop].id) {
+          $scope.plates[shop].meals[$scope.plates[shop].meals.length] = {
+            id: $scope.meals[meal].id,
+            name: $scope.meals[meal].name,
+            price: $scope.meals[meal].price,
+            quantity: $scope.meals[meal].quantity
+          };
+          console.log("if");
+          break;
+        } else if (shop === $scope.plates.length - 1) {
+          $scope.plates[shop+1] = {
+            shop: {
+              id: $scope.meals[meal].shopId,
+              name: $scope.meals[meal].shopName,
+            },
+            meals: [{
+              id: $scope.meals[meal].id,
+              name: $scope.meals[meal].name,
+              price: $scope.meals[meal].price,
+              quantity: $scope.meals[meal].quantity
+            }]
+          };
+          console.log("else if");
+          break;
+        }
+      }
+    }
+  }
+
+  console.log("RecordCtrl (plates): " + $scope.plates);
 
 })

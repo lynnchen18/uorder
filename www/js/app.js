@@ -1,6 +1,6 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-timepicker', 'ionicShop'])
 
-.run(function($ionicPlatform, ngFB) {
+.run(function($ionicPlatform, ngFB, $http) {
   ngFB.init({appId: '969386769767276'});
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -13,6 +13,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-ti
       StatusBar.styleDefault();
     }
   });
+  $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+  $http.defaults.xsrfCookieName = 'csrftoken';
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -91,7 +93,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-ti
     url: '/purchaseRecords',
     views: {
       'menuContent': {
-        templateUrl: 'templates/purchaseRecords.html'
+        templateUrl: 'templates/purchaseRecords.html',
+        controller: 'RecordCtrl'
       }
     }
   })
@@ -118,17 +121,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngOpenFB', 'ionic-ti
       }
     }
   })
-
-  .state('app.keeper', {
-    url: '/keeper',
-    views: {
-      'menuContent':{
-        templateUrl: 'templates/keeper.html',
-      }
-    }
-  })
-
-
   ;$urlRouterProvider.otherwise('/app/home'); 
 })
 
