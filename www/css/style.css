@@ -42,14 +42,12 @@ div.shop {
 	width: 100%;
 	height: 250px;
 	background-color: grey;
-	background-size: cover;
+	background-size: 100% auto;
 	color: white;
 	font-size: 28px;
 	text-shadow: 0 1px 5px grey, 0 -1px 5px grey, 1px 0 5px grey, -1px 0 5px grey;
 	text-align: center;
 	line-height: 250px;
-
-
 }
 div.shop a {
 	display: block;

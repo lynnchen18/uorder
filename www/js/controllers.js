@@ -226,6 +226,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
       cover: resp.data[0].cover, 
       price: resp.data[0].price, 
       info: resp.data[0].info, 
+      quantity: 0
     };
     console.log($scope.meal);
   }, function(err) {
@@ -294,7 +295,8 @@ angular.module('starter.controllers', ['ngOpenFB'])
           name: $scope.meals[meal].name,
           price: $scope.meals[meal].price,
           quantity: $scope.meals[meal].quantity
-        }]
+        }],
+        total: 0
       };
       console.log("first");
     } else {
@@ -306,6 +308,7 @@ angular.module('starter.controllers', ['ngOpenFB'])
             price: $scope.meals[meal].price,
             quantity: $scope.meals[meal].quantity
           };
+          $scope.plates[shop].total = $scope.getPlateTotal($scope.plates[shop].meals);
           console.log("if");
           break;
         } else if (shop === $scope.plates.length - 1) {
@@ -319,7 +322,8 @@ angular.module('starter.controllers', ['ngOpenFB'])
               name: $scope.meals[meal].name,
               price: $scope.meals[meal].price,
               quantity: $scope.meals[meal].quantity
-            }]
+            }],
+            total: 0
           };
           console.log("else if");
           break;
@@ -328,7 +332,19 @@ angular.module('starter.controllers', ['ngOpenFB'])
     }
   }
 
+  for (var plate in $scope.plates.length) {
+    plate.total = $scope.getPlateTotal(plate.meals);
+  };
+
   console.log("PlateCtrl (plates): " + $scope.plates);
+
+  $scope.getPlateTotal = function(meals) {
+    var total = 0;
+    for (var i = $scope.meals.length - 1; i >= 0; i--) {
+      total += $scope.meals[i].quantity * $scope.meals[i].price;
+    }
+    return total;
+  };
 
   $scope.order = function (){
     $http({
@@ -368,7 +384,8 @@ angular.module('starter.controllers', ['ngOpenFB'])
           name: $scope.meals[meal].name,
           price: $scope.meals[meal].price,
           quantity: $scope.meals[meal].quantity
-        }]
+        }],
+        total: 0
       };
       console.log("first");
     } else {
@@ -393,7 +410,8 @@ angular.module('starter.controllers', ['ngOpenFB'])
               name: $scope.meals[meal].name,
               price: $scope.meals[meal].price,
               quantity: $scope.meals[meal].quantity
-            }]
+            }],
+            total: 0
           };
           console.log("else if");
           break;
@@ -402,6 +420,18 @@ angular.module('starter.controllers', ['ngOpenFB'])
     }
   }
 
+  for (var plate in $scope.plates.length) {
+    plate.total = $scope.getPlateTotal(plate.meals);
+  };
+
   console.log("RecordCtrl (plates): " + $scope.plates);
+
+  $scope.getPlateTotal = function(meals) {
+    var total = 0;
+    for (var i = $scope.meals.length - 1; i >= 0; i--) {
+      total += $scope.meals[i].quantity * $scope.meals[i].price;
+    }
+    return total;
+  };
 
 })
